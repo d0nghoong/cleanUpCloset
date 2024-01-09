@@ -1,0 +1,68 @@
+body {
+  background-color: darkgrey;
+}
+div:first-child {
+  text-align: center;
+}
+
+.gallery {
+  margin: 5px;
+  display: inline-block;
+  width: 50px;
+  text-align: center;
+}
+.gallery:hover {
+  transform: scale(1.2);
+}
+
+.blue_button {
+  display: inline-block;
+  margin: 5px;
+  width: 50px;
+  background-color: aqua;
+  border: 1px solid black;
+  transform: translate(0, -15px);
+}
+.blue_button:hover {
+  transform: scale(1.2);
+}
+.yellow_button {
+  display: inline-block;
+  margin: 5px;
+  height: 20px;
+  width: 50px;
+  background-color: yellow;
+  border: 1px solid black;
+  transform: translate(0, -15px);
+}
+.yellow_button:hover {
+  transform: scale(1.2);
+}
+.pink_button {
+  display: inline-block;
+  margin: 5px;
+  width: 50px;
+  background-color: pink;
+  border: 1px solid black;
+  transform: translate(0, -15px);
+}
+.pink_button:hover {
+  transform: scale(1.2);
+}
+
+#list {
+  background-color: whitesmoke;
+  border-style: none;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 400px;
+  height: 100px;
+  font-size: 30px;
+  line-height: 100px;
+}
+
+.icon {
+  width: 30px;
+  transform: translate(0, 5px);
+}
