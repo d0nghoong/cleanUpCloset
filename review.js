@@ -4,39 +4,44 @@ function loadData() {
     .then((json) => json.items);
 }
 
-function displayItems(items) {
-  const contents = document.querySelector(".contents");
-  contents.innerHTML = items.map((item) => createHTML(item)).join(" ");
-}
-
-function createHTML(item) {
-  return `<li class="list" class="${item.color} ${item.type}">
-  <img src=${item.img} alt="" class="icon" /> ${item.gender},${item.size}
-</li>`;
-}
-
-function setEventListener(items) {
-  const logo = document.querySelector(".head");
-  const gallery = document.querySelector(".gallery");
-
-  logo.addEventListener("click", () => displayItems(items));
-  gallery.addEventListener("click", (event) => clickEvent(event, items));
+function createElement(item) {
+  const li = document.createElement("li");
+  const img = document.createElement("img");
+  img.setAttribute("src", item.img);
+  img.setAttribute("class", "icon");
+  li.setAttribute("class", "list");
+  li.setAttribute("data-type", item.type);
+  li.setAttribute("data-color", item.color);
+  li.innerText = `${item.gender},${item.size}`;
+  li.append(img);
+  return li;
 }
 
 function clickEvent(event, items) {
   const result = event.target.dataset.value;
   const key = event.target.dataset.key;
-  if (key == null || result == null) {
+  if (key == null) {
     return;
+  } else if (result == null) {
+    items.forEach((item) => item.classList.remove("show"));
   }
+  updateItems(items, key, result);
+}
 
-  const reitems = items.filter((item) => item[key] == result);
-  displayItems(reitems);
+function updateItems(items, key, result) {
+  items.forEach((item) => {
+    if (item.dataset[key] == result) item.classList.remove("show");
+    else item.classList.add("show");
+  });
 }
 
 loadData()
   .then((items) => {
-    displayItems(items);
-    setEventListener(items);
+    const element = items.map(createElement);
+    console.log(element);
+    const contents = document.querySelector(".contents");
+    contents.append(...element);
+    const gallery = document.querySelector(".gallery");
+    gallery.addEventListener("click", (event) => clickEvent(event, element));
   })
   .catch(console.log);
