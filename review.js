@@ -24,8 +24,7 @@ function clickEvent(event, items) {
     return;
   } else if (result == null) {
     items.forEach((item) => item.classList.remove("show"));
-  }
-  updateItems(items, key, result);
+  } else updateItems(items, key, result);
 }
 
 function updateItems(items, key, result) {
@@ -38,10 +37,11 @@ function updateItems(items, key, result) {
 loadData()
   .then((items) => {
     const element = items.map(createElement);
-    console.log(element);
     const contents = document.querySelector(".contents");
     contents.append(...element);
     const gallery = document.querySelector(".gallery");
+    const logo = document.querySelector(".head");
+    logo.addEventListener("click", (event) => clickEvent(event, element));
     gallery.addEventListener("click", (event) => clickEvent(event, element));
   })
   .catch(console.log);
